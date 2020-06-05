@@ -9,6 +9,14 @@ import (
 // 用户API管理对象
 type Controller struct{}
 
+func (c *Controller) Test(r *ghttp.Request) {
+	one, err := user.Test()
+	if err != nil {
+		response.JsonExit(r, 1, err.Error())
+	}
+	response.JsonExit(r, 0, "", one)
+}
+
 // 注册请求参数，用于前后端交互参数格式约定
 type SignUpRequest struct {
 	user.SignUpInput

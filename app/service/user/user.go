@@ -7,12 +7,18 @@ import (
 	"github.com/gogf/gf/net/ghttp"
 	"github.com/gogf/gf/os/gtime"
 	"github.com/gogf/gf/util/gconv"
+	"github.com/gogf/gf/util/grand"
 	"github.com/gogf/gf/util/gvalid"
 )
 
 const (
 	USER_SESSION_MARK = "user_info"
 )
+
+func Test() (u []*user.Entity, err error) {
+	one, err := user.FindAll()
+	return one, err
+}
 
 // 注册输入参数
 type SignUpInput struct {
@@ -46,8 +52,9 @@ func SignUp(data *SignUpInput) error {
 		return err
 	}
 	// 记录账号创建/注册时间
+	entity.Id = uint(grand.N(100000, 999999))
 	entity.CreateTime = gtime.Now()
-	if _, err := user.Save(entity); err != nil {
+	if _, err := user.Insert(entity); err != nil {
 		return err
 	}
 	return nil

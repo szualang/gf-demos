@@ -9,6 +9,7 @@ import (
 	"github.com/gogf/gf/database/gdb"
 	"github.com/gogf/gf/frame/g"
 	"github.com/gogf/gf/frame/gmvc"
+	_ "github.com/mattn/go-sqlite3"
 	"time"
 )
 
@@ -19,22 +20,22 @@ type arModel struct {
 
 var (
 	// Table is the table name of user.
-	Table = "user"
+	Table = "test"
 	// Model is the model object of user.
 	Model = &arModel{g.DB("default").Table(Table).Safe()}
 	// Columns defines and stores column names for table user.
 	Columns = struct {
-		Id          string // 用户ID             
-        Passport    string // 账号               
-        Password    string // 密码               
-        Nickname    string // 昵称               
-        CreateTime  string // 创建时间/注册时间
+		Id         string // 用户ID
+		Passport   string // 账号
+		Password   string // 密码
+		Nickname   string // 昵称
+		CreateTime string // 创建时间/注册时间
 	}{
-		Id:         "id",           
-        Passport:   "passport",     
-        Password:   "password",     
-        Nickname:   "nickname",     
-        CreateTime: "create_time",
+		Id:         "id",
+		Passport:   "passport",
+		Password:   "password",
+		Nickname:   "nickname",
+		CreateTime: "create_time",
 	}
 )
 
